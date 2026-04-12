@@ -1,1 +1,19 @@
-<p>contact-list works!</p>
+<div class="main-card">
+    <div class="header">
+      <div class="icon-group">
+          <span class="user-icon">👥</span>
+          <div>
+              <h1>Usuarios Activos</h1>
+              <p class="total">Total: {{ contacts.length }} usuarios</p>
+          </div>
+      </div>
+    </div>
+  
+    <div class="list-container">
+      <div *ngFor="let item of contacts">
+        <app-contact-card [contacto]="item"></app-contact-card>
+      </div>
+    </div>
+  
+    <p *ngIf="contacts.length === 0">No hay contactos</p>
+  </div>

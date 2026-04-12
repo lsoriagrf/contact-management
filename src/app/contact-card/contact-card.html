@@ -1,1 +1,21 @@
-<p>contact-card works!</p>
+<div class="user-row">
+    <div class="avatar">
+      <img src="https://ui-avatars.com/api/?name={{contacto.nombre}}&background=random" alt="avatar">
+    </div>
+  
+    <div class="info">
+      <span class="name">{{ contacto.nombre | formatData:'camel' }}</span>
+      <span class="email">{{ contacto.email | formatData:'lower' }}</span>
+    </div>
+  
+    <div class="actions">
+      <label class="switch">
+        <input type="checkbox" [checked]="contacto.estado === 'activo'" (change)="toggleEstado()">
+        <span class="slider round" [ngClass]="{'active-bg': contacto.estado === 'activo'}"></span>
+      </label>
+  
+      <span class="star" (click)="toggleFavorito()" [class.is-fav]="contacto.favorito">
+        {{ contacto.favorito ? '★' : '☆' }}
+      </span>
+    </div>
+  </div>
