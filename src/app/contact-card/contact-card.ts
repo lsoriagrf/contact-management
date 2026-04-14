@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormatDataPipe } from '../format-data-pipe';
+import { FormatDataPipe } from '../pipes/format-data-pipe';
 
 @Component({
   selector: 'app-contact-card',

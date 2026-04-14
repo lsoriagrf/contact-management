@@ -3,14 +3,14 @@
       <div class="icon-group">
           <span class="user-icon">👥</span>
           <div>
-              <h1>Usuarios Activos</h1>
-              <p class="total">Total: {{ contacts.length }} usuarios</p>
+              <h1>Contactos</h1>
+              <p class="total">Activos: {{ totalActivos }} de {{ contacts.length }} usuarios</p>
           </div>
       </div>
     </div>
   
     <div class="list-container">
-      <div *ngFor="let item of contacts">
+      <div *ngFor="let item of contacts | sortByFavorite">
         <app-contact-card [contacto]="item"></app-contact-card>
       </div>
     </div>
