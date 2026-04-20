@@ -9,8 +9,9 @@ export class Sort implements PipeTransform {
     if (!contacts) return [];
     
     return [...contacts].sort((a, b) => {
-      if (a.favorito === b.favorito) return 0;
-      return a.favorito ? -1 : 1;
+      if (a.favorite === b.favorite) return 0;
+      return a.favorite ? -1 : 1;
     });
   }
 }
+

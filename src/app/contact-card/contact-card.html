@@ -1,22 +1,27 @@
-<div class="user-row" [ngClass]="{'inactivo-fila': contacto.estado === 'inactivo'}">
+<div class="user-row">
   
   <div class="avatar">
-    <img src="https://ui-avatars.com/api/?name={{contacto.nombre}}&background=random" alt="avatar">
+    <app-initials-avatar [name]="contact?.name" [size]="40"></app-initials-avatar>
   </div>
 
   <div class="info">
-    <span class="name">{{ contacto.nombre | formatData:'camel' }}</span>
-    <span class="email">{{ contacto.email | formatData:'lower' }}</span>
+    <span class="name">{{ contact.name | formatData:'camel' }}</span>
+    <span class="email">{{ contact.email | formatData:'lower' }}</span>
+    <button class="btn-detail" (click)="viewDetails()">Ver detalle</button>
   </div>
 
   <div class="actions">
-    <label class="switch">
-      <input type="checkbox" [checked]="contacto.estado === 'activo'" (change)="toggleEstado()">
-      <span class="slider round"></span>
-    </label>
+    <div class="status-indicator">
+      <span class="status-dot" [ngClass]="contact.status"></span>
+      <span class="status-text">{{ contact.status }}</span>
+    </div>
 
-    <span class="star" (click)="toggleFavorito()" [class.is-fav]="contacto.favorito">
-      {{ contacto.favorito ? '★' : '☆' }}
+    <span class="star" (click)="toggleFavorite()" [class.is-fav]="contact.favorite">
+      @if (contact.favorite) {
+        ★
+      } @else {
+        ☆
+      }
     </span>
   </div>
 </div>

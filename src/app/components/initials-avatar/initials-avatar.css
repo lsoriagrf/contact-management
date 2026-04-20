@@ -1,0 +1,15 @@
+.initials-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #1d4ed8;
+  background: transparent;
+  border: 2px solid #1d4ed8;
+  box-shadow: none;
+  user-select: none;
+}
+
+

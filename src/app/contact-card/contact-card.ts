@@ -1,23 +1,26 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormatDataPipe } from '../pipes/format-data-pipe';
+import { InitialsAvatar } from '../components/initials-avatar/initials-avatar';
 
 @Component({
   selector: 'app-contact-card',
   standalone: true,
-  imports: [CommonModule, FormatDataPipe],
+  imports: [CommonModule, FormatDataPipe, InitialsAvatar],
   templateUrl: './contact-card.html',
   styleUrl: './contact-card.css'
 })
 export class ContactCard {
-  // Este decorador permite que el padre pase un objeto "contacto"
-  @Input() contacto: any; 
+  
+  @Input() contact: any; 
 
-  toggleEstado() {
-    this.contacto.estado = this.contacto.estado === 'activo' ? 'inactivo' : 'activo';
+  @Output() select = new EventEmitter<any>();
+
+  toggleFavorite() {
+    this.contact.favorite = !this.contact.favorite;
   }
 
-  toggleFavorito() {
-    this.contacto.favorito = !this.contacto.favorito;
+  viewDetails() {
+    this.select.emit(this.contact);
   }
 }

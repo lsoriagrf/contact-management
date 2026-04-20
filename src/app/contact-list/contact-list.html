@@ -1,19 +1,43 @@
 <div class="main-card">
-    <div class="header">
-      <div class="icon-group">
-          <span class="user-icon">👥</span>
-          <div>
-              <h1>Contactos</h1>
-              <p class="total">Activos: {{ totalActivos }} de {{ contacts.length }} usuarios</p>
-          </div>
+  <div class="header">
+    <div class="icon-group">
+      <span class="user-icon">
+        <i class="fa-solid fa-user-group"></i>
+      </span>
+      <div>
+        <h1>Contactos</h1>
+        <p class="total">Activos: {{ totalActivos }} de {{ contacts.length }} contactos</p>
       </div>
     </div>
-  
-    <div class="list-container">
-      <div *ngFor="let item of contacts | sortByFavorite">
-        <app-contact-card [contacto]="item"></app-contact-card>
-      </div>
-    </div>
-  
-    <p *ngIf="contacts.length === 0">No hay contactos</p>
   </div>
+
+  <div class="list-container">
+    @if (contacts.length > 0) {
+      
+      @for (item of contacts | sortByFavorite; track item.email) {
+        <app-contact-card 
+          [contact]="item" 
+          (select)="handleSelectContact($event)">
+        </app-contact-card>
+      }
+
+    } @else {
+      <p>No hay contactos</p>
+    }
+  </div>
+
+  @if (selectedContact) {
+    <div class="detail-container">
+      <div class="detail-header">
+        <div class="detail-header_inner">
+          <h4 class="detail-header_title">Detalle del Contacto</h4>
+          <button type="button" class="btn-close" (click)="clearSelection()">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            Cerrar Detalle
+          </button>
+        </div>
+      </div>
+      <app-contact-detail [contact]="selectedContact"></app-contact-detail>
+    </div>
+  }
+</div>

@@ -9,12 +9,11 @@ export class FormatDataPipe implements PipeTransform {
     if (!value) return '';
 
     if (type === 'lower') {
-      //return value.toLowerCase();
       return value.toLowerCase().replace(/\s+/g, '');
     }
 
     if (type === 'camel') {
-      // Convierte "estado activo" a "Estado Activo" (Title/Camel format para UI)
+    
       return value
         .trim()
         .split(' ')
