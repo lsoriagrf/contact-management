@@ -29,15 +29,15 @@
   @if (selectedContact) {
     <div class="detail-container">
       <div class="detail-header">
-        <div class="detail-header_inner">
-          <h4 class="detail-header_title">Detalle del Contacto</h4>
-          <button type="button" class="btn-close" (click)="clearSelection()">
-            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-            Cerrar Detalle
-          </button>
-        </div>
+        <h4 class="detail-header_title">Detalle del Contacto</h4>
+        <button type="button" class="btn-close" (click)="clearSelection()">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          Cerrar Detalle
+        </button>
       </div>
-      <app-contact-detail [contact]="selectedContact"></app-contact-detail>
+      <app-contact-detail
+        [contact]="selectedContact"
+      ></app-contact-detail>
     </div>
   }
 </div>

@@ -58,17 +58,14 @@
   }
 
   .detail-header {
-    border-radius: 24px 24px 0 0;
-    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-    border-bottom: 1px solid #e2e8f0;
-  }
-
-  .detail-header_inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
     padding: 0.9rem 1rem 0.85rem;
+    border-radius: 24px 24px 0 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    border-bottom: 1px solid #e2e8f0;
   }
 
   .detail-header_title {
