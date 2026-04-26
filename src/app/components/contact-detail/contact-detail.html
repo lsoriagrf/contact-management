@@ -1,28 +1,28 @@
 <article class="detail-card">
   <div class="detail-status-strip">
     <div class="detail-status-head">
-      <app-initials-avatar [name]="contact?.name" [size]="62" variant="main"></app-initials-avatar>
+      <app-initials-avatar [name]="contact.name" [size]="62" variant="main"></app-initials-avatar>
     </div>
-    @switch (contact.status) {
-      @case ('activo') {
-        <p class="status-pill status-pill--online">
-          <i class="fa-solid fa-circle-check status-pill__icon" aria-hidden="true"></i>
-          En línea
-        </p>
+      @switch (contact.status) {
+        @case ('activo') {
+          <p class="status-pill status-pill--online">
+            <i class="fa-solid fa-circle-check status-pill__icon" aria-hidden="true"></i>
+            En línea
+          </p>
+        }
+        @case ('inactivo') {
+          <p class="status-pill status-pill--away">
+            <i class="fa-solid fa-moon status-pill__icon" aria-hidden="true"></i>
+            Inactivo
+          </p>
+        }
+        @default {
+          <p class="status-pill status-pill--unknown">
+            <i class="fa-regular fa-circle-dot status-pill__icon" aria-hidden="true"></i>
+            Sin estado
+          </p>
+        }
       }
-      @case ('inactivo') {
-        <p class="status-pill status-pill--away">
-          <i class="fa-solid fa-moon status-pill__icon" aria-hidden="true"></i>
-          Inactivo
-        </p>
-      }
-      @default {
-        <p class="status-pill status-pill--unknown">
-          <i class="fa-regular fa-circle-dot status-pill__icon" aria-hidden="true"></i>
-          Sin estado
-        </p>
-      }
-    }
   </div>
 
   <div class="detail-body">

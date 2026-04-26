@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormatDataPipe } from '../../pipes/format-data-pipe'; // Ajusta la ruta a tu pipe
 import { InitialsAvatar } from '../initials-avatar/initials-avatar';
+import { Contact } from '../../models/contact.model';
 
 @Component({
   selector: 'app-contact-detail',
@@ -12,5 +13,5 @@ import { InitialsAvatar } from '../initials-avatar/initials-avatar';
 })
 export class ContactDetail {
 
-  @Input() contact: any;
+  @Input() contact!: Contact;
 }

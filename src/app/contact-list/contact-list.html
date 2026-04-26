@@ -15,10 +15,7 @@
     @if (contacts.length > 0) {
       
       @for (item of contacts | sortByFavorite; track item.email) {
-        <app-contact-card 
-          [contact]="item" 
-          (select)="handleSelectContact($event)">
-        </app-contact-card>
+        <app-contact-card [contact]="item" (select)="handleSelectContact($event)"></app-contact-card>
       }
 
     } @else {
@@ -35,9 +32,7 @@
           Cerrar Detalle
         </button>
       </div>
-      <app-contact-detail
-        [contact]="selectedContact"
-      ></app-contact-detail>
+      <app-contact-detail [contact]="selectedContact"></app-contact-detail>
     </div>
   }
 </div>

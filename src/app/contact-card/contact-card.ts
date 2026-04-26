@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormatDataPipe } from '../pipes/format-data-pipe';
 import { InitialsAvatar } from '../components/initials-avatar/initials-avatar';
+import { Contact } from '../models/contact.model';
 
 @Component({
   selector: 'app-contact-card',
@@ -12,9 +13,9 @@ import { InitialsAvatar } from '../components/initials-avatar/initials-avatar';
 })
 export class ContactCard {
   
-  @Input() contact: any; 
+  @Input() contact!: Contact;
 
-  @Output() select = new EventEmitter<any>();
+  @Output() select = new EventEmitter<Contact>();
 
   toggleFavorite() {
     this.contact.favorite = !this.contact.favorite;

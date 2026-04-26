@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Contact } from '../models/contact.model';
 
 @Pipe({
   name: 'sortByFavorite',
   pure: false
 })
 export class Sort implements PipeTransform {
-  transform(contacts: any[]): any[] {
+  transform(contacts: Contact[] | null | undefined): Contact[] {
     if (!contacts) return [];
     
     return [...contacts].sort((a, b) => {
