@@ -1,20 +1,24 @@
-<div class="main-card">
+<div class="page-shell main-card">
   <div class="header">
     <div class="icon-group">
       <span class="user-icon">
         <i class="fa-solid fa-user-group"></i>
       </span>
       <div>
-        <h1>Contactos</h1>
-        <p class="total">Activos: {{ totalActivos }} de {{ contacts.length }} contactos</p>
+        <h1>Gestión de contactos</h1>
+        <p class="total">Activos: {{ totalActiveContacts() }} de {{ totalContacts() }} contactos</p>
       </div>
     </div>
+    <button type="button" class="btn-new-user" (click)="addElement()">
+      <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+      Nuevo
+    </button>
   </div>
 
   <div class="list-container">
-    @if (contacts.length > 0) {
+    @if (contactsFromService().length > 0) {
       
-      @for (item of contacts | sortByFavorite; track item.email) {
+      @for (item of contactsFromService() | sortByFavorite; track item.email) {
         <app-contact-card [contact]="item" (select)="handleSelectContact($event)"></app-contact-card>
       }
 
@@ -22,17 +26,4 @@
       <p>No hay contactos</p>
     }
   </div>
-
-  @if (selectedContact) {
-    <div class="detail-container">
-      <div class="detail-header">
-        <h4 class="detail-header_title">Detalle del Contacto</h4>
-        <button type="button" class="btn-close" (click)="clearSelection()">
-          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-          Cerrar Detalle
-        </button>
-      </div>
-      <app-contact-detail [contact]="selectedContact"></app-contact-detail>
-    </div>
-  }
 </div>

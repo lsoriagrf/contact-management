@@ -1,0 +1,31 @@
+.detail-page {
+  padding: 0;
+}
+
+.detail-page__card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+}
+
+.detail-page__empty {
+  color: #6b7280;
+  margin: 0;
+}
+
+.detail-page__card ::ng-deep app-contact-detail {
+  display: block;
+  width: 100%;
+}
+
+.detail-page__card ::ng-deep app-contact-detail .detail-card {
+  margin-top: 0;
+  margin-inline: 0;
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}

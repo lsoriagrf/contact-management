@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { ContactList } from './contact-list/contact-list';
 import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, ContactList],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

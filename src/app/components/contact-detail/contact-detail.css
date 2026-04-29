@@ -11,8 +11,8 @@
 
 .detail-card {
   position: relative;
-  max-width: 420px;
-  margin: 1.25rem auto 0;
+  width: 100%;
+  margin: 0;
   border-radius: 24px;
   background: var(--detail-surface);
   box-shadow: var(--detail-shadow);
@@ -33,16 +33,11 @@
   margin-bottom: 0.55rem;
 }
 
-.detail-status-strip .status-pill {
-  margin-top: 0;
-  box-shadow: none;
-}
-
 .status-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  margin: 1rem 0 0;
+  margin: 0;
   padding: 0.45rem 1rem;
   border-radius: 999px;
   font-size: 0.65rem;
@@ -98,7 +93,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.75rem 0.85rem;
+  padding: 0.5rem 0.6rem;
   border-radius: 14px;
   background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
   border: 1px solid rgba(226, 232, 240, 0.9);

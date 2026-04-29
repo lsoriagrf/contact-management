@@ -1,0 +1,11 @@
+<section class="page-shell detail-page">
+  <div class="detail-page__card">
+    <app-page-header title="Detalle de contacto"></app-page-header>
+
+    @if (selectedContact(); as currentContact) {
+      <app-contact-detail [contact]="currentContact"></app-contact-detail>
+    } @else {
+      <p class="detail-page__empty">No se encontró el contacto</p>
+    }
+  </div>
+</section>

@@ -1,32 +1,17 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
-import { ContactCard } from '../contact-card/contact-card';
-import { Sort } from '../pipes/sort-pipe';
+import { Injectable, computed, effect, signal } from '@angular/core';
 import { Contact } from '../models/contact.model';
-import { Router } from '@angular/router';
-import { ContactsService } from '../services/contacts.service';
 
-@Component({
-  selector: 'app-contact-list',
-  standalone: true,
-  imports: [CommonModule, ContactCard, Sort],
-  templateUrl: './contact-list.html',
-  styleUrl: './contact-list.css'
+@Injectable({
+  providedIn: 'root'
 })
-export class ContactList {
-  private readonly router = inject(Router);
-  private readonly contactsService = inject(ContactsService);
-  readonly contactsFromService = this.contactsService.contacts;
-  readonly totalContacts = this.contactsService.totalContacts;
-  readonly totalActiveContacts = this.contactsService.totalActiveContacts;
-
-  contacts: Contact[] = [
+export class ContactsService {
+  readonly contacts = signal<Contact[]>([
     { name: 'ELENA mora', email: '  ELENA @ code . COM  ', status: 'activo', favorite: true, phone: '0987654321', address: 'Av. Amazonas N24, Quito', birthday: new Date('1990-05-12'), label: 'Trabajo' },
     { name: 'juan PÉREZ', email: 'JUAN.perez @ EMAIL .com', status: 'activo', favorite: false, phone: '0991234567', address: 'Calle Larga 3-45, Cuenca', birthday: new Date('1985-11-22'), label: 'Amigo' },
     { name: 'laura GÓMEZ', email: ' LAURA.gomez@email.com ', status: 'inactivo', favorite: true, phone: '0912345678', address: 'Urb. La Joya, Guayaquil', birthday: new Date('1993-02-14'), label: 'Familia' },
     { name: 'carlos RAMÍREZ', email: 'carlos . ramirez @ EMAIL . com', status: 'activo', favorite: false, phone: '0956789012', address: 'Barrio Las Palmas, Esmeraldas', birthday: new Date('1988-08-30'), label: 'Trabajo' },
     { name: 'ANA lópez', email: '  ana.lopez @ EMAIL . COM', status: 'inactivo', favorite: false, phone: '0945678123', address: 'Sector El Batán, Quito', birthday: new Date('1995-12-05'), label: 'Amigo' },
-    { name: 'ROBERTO castro', email: ' ROB @ CAstro . org ',status: 'inactivo',  favorite: true, phone: '0934567890', address: 'Av. Cevallos, Ambato', birthday: new Date('1982-03-15'), label: 'Trabajo' },
+    { name: 'ROBERTO castro', email: ' ROB @ CAstro . org ', status: 'inactivo', favorite: true, phone: '0934567890', address: 'Av. Cevallos, Ambato', birthday: new Date('1982-03-15'), label: 'Trabajo' },
     { name: 'marta Vizuete', email: 'MARTA . VIZUETE @ gmail . COM', status: 'inactivo', favorite: false, phone: '0923456781', address: 'Calle Bolívar, Loja', birthday: new Date('1991-07-19'), label: 'Familia' },
     { name: 'diego ARMANDO', email: '  dieguito @ FUTBOL . com', status: 'activo', favorite: true, phone: '0978901234', address: 'Barrio Centenario, Guayaquil', birthday: new Date('1980-10-30'), label: 'Amigo' },
     { name: 'SARA lizarazo', email: 'sara_LIZA @ empresa . net ', status: 'inactivo', favorite: false, phone: '0967890123', address: 'Conjunto El Condado, Quito', birthday: new Date('1994-01-25'), label: 'Trabajo' },
@@ -36,35 +21,45 @@ export class ContactList {
     { name: 'JIMENA fuentes', email: ' jime . FUENTES @ cloud . io ', status: 'activo', favorite: false, phone: '0977665544', address: 'Urb. Santa Cecilia, Quito', birthday: new Date('1996-08-21'), label: 'Amigo' },
     { name: 'hugo SÁNCHEZ', email: ' HUGO @ goles . mx ', status: 'activo', favorite: true, phone: '0922334455', address: 'Av. 10 de Agosto, Ibarra', birthday: new Date('1984-02-11'), label: 'Trabajo' },
     { name: 'VALERIA duque', email: '  vale . DUQUE @ academia . edu ', status: 'inactivo', favorite: false, phone: '0911223344', address: 'Paseo Shopping, Machala', birthday: new Date('1997-11-15'), label: 'Familia' }
-  ];
+  ]);
 
-  handleSelectContact(contact: Contact): void {
-    this.contactsService.selectContact(contact);
-    this.router.navigate(['/detalle-contacto'], { state: { contact } });
-  }
+  readonly selectedContact = signal<Contact | null>(null);
+  readonly totalContacts = computed(() => this.contacts().length);
+  readonly totalActiveContacts = computed(
+    () => this.contacts().filter((contact) => contact.status === 'activo').length
+  );
 
-  addElement(): void {
-    const nextIndex = this.totalContacts() + 1;
-
-    this.contactsService.addContact({
-      name: `Nuevo Contacto ${nextIndex}`,
-      email: `nuevo.contacto.${nextIndex}@demo.com`,
-      status: 'activo',
-      favorite: false,
-      phone: '0000000000',
-      address: 'Dirección pendiente',
-      birthday: new Date(),
-      label: 'Amigo'
+  constructor() {
+    effect(() => {
+      console.log('[ContactsService] Lista actual:', this.contacts());
     });
   }
 
-  goToCreateContact(): void {
-    this.router.navigate(['/crear-contacto']);
+  getContacts(): Contact[] {
+    return this.contacts();
   }
 
-  constructor() {
-    if (this.contactsService.getContacts().length === 0) {
-      this.contactsService.setContacts(this.contacts);
+  setContacts(contacts: Contact[]): void {
+    this.contacts.set(contacts);
+  }
+
+  addContact(newContact: Contact): void {
+    this.contacts.update((currentContacts) => [...currentContacts, newContact]);
+  }
+
+  updateContact(updatedContact: Contact): void {
+    this.contacts.update((currentContacts) =>
+      currentContacts.map((contact) =>
+        contact.email === updatedContact.email ? updatedContact : contact
+      )
+    );
+
+    if (this.selectedContact()?.email === updatedContact.email) {
+      this.selectedContact.set(updatedContact);
     }
+  }
+
+  selectContact(contact: Contact | null): void {
+    this.selectedContact.set(contact);
   }
 }

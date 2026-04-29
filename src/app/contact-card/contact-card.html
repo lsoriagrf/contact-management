@@ -1,22 +1,19 @@
-<div class="user-row">
+<div class="user-row" (click)="viewDetails()">
   
   <div class="avatar">
     <app-initials-avatar [name]="contact.name" [size]="40"></app-initials-avatar>
+    @if (contact.status === 'activo') {
+      <span class="status-dot activo"></span>
+    }
   </div>
 
   <div class="info">
     <span class="name">{{ contact.name | formatData:'camel' }}</span>
     <span class="email">{{ contact.email | formatData:'lower' }}</span>
-    <button class="btn-detail" (click)="viewDetails()">Ver detalle</button>
   </div>
 
   <div class="actions">
-    <div class="status-indicator">
-      <span class="status-dot" [ngClass]="contact.status"></span>
-      <span class="status-text">{{ contact.status }}</span>
-    </div>
-
-    <span class="star" (click)="toggleFavorite()" [class.is-fav]="contact.favorite">
+    <span class="star" (click)="$event.stopPropagation(); toggleFavorite()" [class.is-fav]="contact.favorite">
       @if (contact.favorite) {
         ★
       } @else {

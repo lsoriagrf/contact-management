@@ -3,10 +3,7 @@ export type ContactStatus = 'activo' | 'inactivo';
 export type ContactLabel =
   | 'Trabajo'
   | 'Amigo'
-  | 'Familia'
-  | 'trabajo'
-  | 'amigo'
-  | 'familia';
+  | 'Familia';
 
 export interface Contact {
   name: string;

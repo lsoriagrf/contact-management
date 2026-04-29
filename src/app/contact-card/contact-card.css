@@ -4,9 +4,11 @@
   padding: 12px 0;
   border-bottom: 1px solid #f1f5f9;
   transition: opacity 0.3s ease;
+  cursor: pointer;
 }
 
 .avatar {
+  position: relative;
   margin-right: 15px;
   display: flex;
   align-items: center;
@@ -29,22 +31,15 @@
   font-size: 0.75rem;
 }
 
-.status-indicator {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: capitalize;
-  min-width: 70px; 
-  justify-content: flex-end;
-}
-
 .status-dot {
-  width: 10px;
-  height: 10px;
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   display: inline-block;
+  border: 1px solid #ffffff;
 }
 
 /* Colores dinámicos según el status */
@@ -53,13 +48,6 @@
   box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
 }
 
-.status-dot.inactivo {
-  background-color: #94a3b8;
-}
-
-.status-text {
-  color: #64748b;
-}
 /* Estrella */
 .star {
   cursor: pointer;
@@ -70,23 +58,6 @@
 
 .star.is-fav {
   color: #fbbf24;
-}
-
-.btn-detail {
-  background: transparent;
-  color: #052559;
-  border: none;
-  font-size: 0.65rem;
-  text-align: left;
-  padding: 0;
-  cursor: pointer;
-  text-decoration: underline;
-  margin-top: 4px;
-  width: fit-content;
-}
-
-.btn-detail:hover {
-  color: #000000;
 }
 
 .actions {
