@@ -24,6 +24,12 @@
   border-radius: 10px;
   background: #f8fafc;
   border: 1px solid #d8e1f0;
+  transition: border-color 0.15s ease;
+}
+
+.input-row--error {
+  border-color: #ef4444;
+  background: #fff5f5;
 }
 
 .input-row__icon {
@@ -43,6 +49,13 @@
 
 .input-row input::placeholder {
   color: #7f94bd;
+}
+
+.field-error {
+  font-size: 0.72rem;
+  color: #ef4444;
+  padding-left: 14px;
+  margin-top: -4px;
 }
 
 .select-grid {
@@ -99,6 +112,17 @@ select {
   box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
 }
 
-.btn-save-contact:hover {
+.btn-save-contact:hover:not(:disabled) {
   filter: brightness(0.97);
+}
+
+.btn-save-contact:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.edit-empty {
+  color: #6b7280;
+  font-size: 0.85rem;
+  margin: 0;
 }

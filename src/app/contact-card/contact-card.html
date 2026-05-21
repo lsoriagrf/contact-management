@@ -13,6 +13,9 @@
   </div>
 
   <div class="actions">
+    <button class="btn-edit" (click)="$event.stopPropagation(); editContact()" title="Editar contacto">
+      <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+    </button>
     <span class="star" (click)="$event.stopPropagation(); toggleFavorite()" [class.is-fav]="contact.favorite">
       @if (contact.favorite) {
         ★

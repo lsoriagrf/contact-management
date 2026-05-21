@@ -9,7 +9,7 @@
         <p class="total">Activos: {{ totalActiveContacts() }} de {{ totalContacts() }} contactos</p>
       </div>
     </div>
-    <button type="button" class="btn-new-user" (click)="addElement()">
+    <button type="button" class="btn-new-user" (click)="goToCreateContact()">
       <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
       Nuevo
     </button>
@@ -19,7 +19,7 @@
     @if (contactsFromService().length > 0) {
       
       @for (item of contactsFromService() | sortByFavorite; track item.email) {
-        <app-contact-card [contact]="item" (select)="handleSelectContact($event)"></app-contact-card>
+        <app-contact-card [contact]="item" (select)="handleSelectContact($event)" (edit)="handleEditContact($event)"></app-contact-card>
       }
 
     } @else {

@@ -16,6 +16,7 @@ export class ContactCard {
   @Input() contact!: Contact;
 
   @Output() select = new EventEmitter<Contact>();
+  @Output() edit = new EventEmitter<Contact>();
 
   toggleFavorite() {
     this.contact.favorite = !this.contact.favorite;
@@ -23,5 +24,9 @@ export class ContactCard {
 
   viewDetails() {
     this.select.emit(this.contact);
+  }
+
+  editContact() {
+    this.edit.emit(this.contact);
   }
 }

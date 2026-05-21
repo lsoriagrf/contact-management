@@ -1,0 +1,136 @@
+<section class="page-shell create-page">
+  <div class="create-page__card">
+    <app-page-header title="Editar contacto"></app-page-header>
+
+    @if (selectedItem()) {
+
+      <form class="create-form" #editForm="ngForm" (ngSubmit)="saveChanges()">
+
+        <!-- Nombre -->
+        <div class="input-row" [class.input-row--error]="nameInput.invalid && nameInput.touched">
+          <i class="fa-solid fa-user input-row__icon" aria-hidden="true"></i>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            [(ngModel)]="editContact.name"
+            #nameInput="ngModel"
+            placeholder="Nombre completo"
+            required
+            minlength="10"
+          />
+        </div>
+        @if (nameInput.invalid && nameInput.touched) {
+          @if (nameInput.errors?.['required']) {
+            <span class="field-error">El nombre es obligatorio</span>
+          } @else if (nameInput.errors?.['minlength']) {
+            <span class="field-error">Mínimo 10 caracteres</span>
+          }
+        }
+
+        <!-- Correo -->
+        <div class="input-row" [class.input-row--error]="emailInput.invalid && emailInput.touched">
+          <i class="fa-solid fa-envelope input-row__icon" aria-hidden="true"></i>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            [(ngModel)]="editContact.email"
+            #emailInput="ngModel"
+            placeholder="Correo electrónico"
+            required
+            email
+          />
+        </div>
+        @if (emailInput.invalid && emailInput.touched) {
+          @if (emailInput.errors?.['required']) {
+            <span class="field-error">El correo es obligatorio</span>
+          } @else if (emailInput.errors?.['email']) {
+            <span class="field-error">Ingresa un correo válido</span>
+          }
+        }
+
+        <!-- Teléfono -->
+        <div class="input-row" [class.input-row--error]="phoneInput.invalid && phoneInput.touched">
+          <i class="fa-solid fa-phone input-row__icon" aria-hidden="true"></i>
+          <input
+            id="phone"
+            type="text"
+            name="phone"
+            [(ngModel)]="editContact.phone"
+            #phoneInput="ngModel"
+            placeholder="Teléfono"
+            maxlength="10"
+            pattern="\d{10}"
+          />
+        </div>
+        @if (phoneInput.invalid && phoneInput.touched) {
+          <span class="field-error">El teléfono debe tener exactamente 10 dígitos</span>
+        }
+
+        <!-- Dirección -->
+        <div class="input-row">
+          <i class="fa-solid fa-location-dot input-row__icon" aria-hidden="true"></i>
+          <input
+            id="address"
+            type="text"
+            name="address"
+            [(ngModel)]="editContact.address"
+            placeholder="Dirección"
+          />
+        </div>
+
+        <!-- Fecha de nacimiento -->
+        <div class="input-row">
+          <i class="fa-solid fa-cake-candles input-row__icon" aria-hidden="true"></i>
+          <input
+            id="birthday"
+            type="date"
+            name="birthday"
+            [(ngModel)]="birthdayInput"
+          />
+        </div>
+
+        <!-- Estado y Etiqueta -->
+        <div class="select-grid">
+          <div class="select-box">
+            <label class="select-box__label" for="status">Estado</label>
+            <select id="status" name="status" [(ngModel)]="editContact.status">
+              @for (status of statusOptions; track status) {
+                <option [value]="status">{{ status }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="select-box">
+            <label class="select-box__label" for="label">Etiqueta</label>
+            <select id="label" name="label" [(ngModel)]="editContact.label">
+              @for (label of labelOptions; track label) {
+                <option [value]="label">{{ label }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <!-- Favorito -->
+        <label class="favorite-check">
+          <input type="checkbox" name="favorite" [(ngModel)]="editContact.favorite" />
+          Marcar como favorito
+        </label>
+
+        <button
+          type="submit"
+          class="btn-save-contact"
+          [disabled]="editForm.invalid"
+        >
+          Guardar cambios
+        </button>
+
+      </form>
+
+    } @else {
+      <p class="edit-empty">No hay contacto seleccionado para editar.</p>
+    }
+
+  </div>
+</section>

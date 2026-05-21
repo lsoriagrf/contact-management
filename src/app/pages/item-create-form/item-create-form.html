@@ -1,0 +1,85 @@
+<section class="page-shell create-page">
+  <div class="create-page__card">
+    <app-page-header title="Crear contacto"></app-page-header>
+
+    <form class="create-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="input-row" [class.input-row--error]="f.name.invalid && f.name.touched">
+        <i class="fa-solid fa-user input-row__icon" aria-hidden="true"></i>
+        <input id="name" type="text" formControlName="name" placeholder="Nombre completo" />
+      </div>
+      @if (f.name.invalid && f.name.touched) {
+        @if (f.name.errors?.['required']) {
+          <span class="field-error">El nombre es obligatorio</span>
+        } @else if (f.name.errors?.['minlength']) {
+          <span class="field-error">Mínimo 10 caracteres</span>
+        } @else if (f.name.errors?.['nameExists']) {
+          <span class="field-error">Este nombre ya está registrado</span>
+        }
+      }
+
+      <div class="input-row" [class.input-row--error]="f.email.invalid && f.email.touched">
+        <i class="fa-solid fa-envelope input-row__icon" aria-hidden="true"></i>
+        <input id="email" type="email" formControlName="email" placeholder="Correo electrónico" />
+        @if (f.email.pending) {
+          <i class="fa-solid fa-spinner input-row__icon--spin" aria-hidden="true"></i>
+        }
+      </div>
+      @if (f.email.invalid && f.email.touched) {
+        @if (f.email.errors?.['required']) {
+          <span class="field-error">El correo es obligatorio</span>
+        } @else if (f.email.errors?.['email']) {
+          <span class="field-error">Ingresa un correo válido</span>
+        } @else if (f.email.errors?.['emailExists']) {
+          <span class="field-error">Este correo ya está registrado</span>
+        }
+      }
+
+      <div class="input-row" [class.input-row--error]="f.phone.invalid && f.phone.touched">
+        <i class="fa-solid fa-phone input-row__icon" aria-hidden="true"></i>
+        <input id="phone" type="text" formControlName="phone" placeholder="Teléfono" maxlength="10" />
+      </div>
+      @if (f.phone.invalid && f.phone.touched) {
+        <span class="field-error">Teléfono debe tener 10 dígitos</span>
+      }
+
+      <div class="input-row">
+        <i class="fa-solid fa-location-dot input-row__icon" aria-hidden="true"></i>
+        <input id="address" type="text" formControlName="address" placeholder="Dirección" />
+      </div>
+
+      <div class="input-row">
+        <i class="fa-solid fa-cake-candles input-row__icon" aria-hidden="true"></i>
+        <input id="birthday" type="date" formControlName="birthday" />
+      </div>
+
+      <div class="select-grid">
+        <div class="select-box">
+          <label class="select-box__label" for="status">Estado</label>
+          <select id="status" formControlName="status">
+            @for (status of statusOptions; track status) {
+              <option [value]="status">{{ status }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="select-box">
+          <label class="select-box__label" for="label">Etiqueta</label>
+          <select id="label" formControlName="label">
+            @for (label of labelOptions; track label) {
+              <option [value]="label">{{ label }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <label class="favorite-check">
+        <input type="checkbox" formControlName="favorite" />
+        Marcar como favorito
+      </label>
+
+      <button type="submit" class="btn-save-contact" [disabled]="form.invalid || form.pending">
+        Guardar contacto
+      </button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,133 @@
+.create-page {
+  padding: 0;
+}
+
+.create-page__card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+}
+
+.create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  height: 38px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #d8e1f0;
+  transition: border-color 0.15s ease;
+}
+
+.input-row--error {
+  border-color: #ef4444;
+  background: #fff5f5;
+}
+
+.input-row__icon {
+  color: #1d4ed8;
+  font-size: 1.05rem;
+}
+
+.input-row input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 0.82rem;
+  color: #0f172a;
+  outline: none;
+}
+
+.input-row input::placeholder {
+  color: #7f94bd;
+}
+
+.field-error {
+  font-size: 0.72rem;
+  color: #ef4444;
+  padding-left: 14px;
+  margin-top: -4px;
+}
+
+.input-row__icon--spin {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.select-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.select-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #d8e1f0;
+}
+
+.select-box__label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+select {
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  padding: 6px 8px;
+  font-size: 0.82rem;
+  color: #0f172a;
+  background: #ffffff;
+}
+
+.favorite-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #334155;
+}
+
+.btn-save-contact {
+  margin-top: 6px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(180deg, #5a97ff 0%, #2f6fe8 100%);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+}
+
+.btn-save-contact:hover:not(:disabled) {
+  filter: brightness(0.97);
+}
+
+.btn-save-contact:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
