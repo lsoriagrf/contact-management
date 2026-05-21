@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 import { Observable, delay, of } from 'rxjs';
 import { PageHeader } from '../../components/page-header/page-header';
 import { Contact, ContactLabel, ContactStatus } from '../../models/contact.model';
-import { ContactsService } from '../../services/contacts.service';
 import { ItemsService } from '../../services/items.service';
 
 @Component({
@@ -25,7 +24,6 @@ import { ItemsService } from '../../services/items.service';
 export class ItemCreateForm {
   private readonly fb = inject(FormBuilder);
   private readonly itemsService = inject(ItemsService);
-  private readonly contactsService = inject(ContactsService);
   private readonly router = inject(Router);
 
   readonly statusOptions: ContactStatus[] = ['activo', 'inactivo'];
@@ -54,7 +52,7 @@ export class ItemCreateForm {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       if (!control.value) return of(null);
       const name = control.value.trim().toLowerCase();
-      const exists = this.contactsService.getContacts().some(
+      const exists = this.itemsService.getItems().some(
         (c) => c.name.toLowerCase() === name
       );
       return of(exists ? { nameExists: true } : null).pipe(delay(400));
@@ -65,7 +63,7 @@ export class ItemCreateForm {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       if (!control.value) return of(null);
       const email = control.value.trim().toLowerCase();
-      const exists = this.contactsService.getContacts().some(
+      const exists = this.itemsService.getItems().some(
         (c) => c.email.toLowerCase() === email
       );
       return of(exists ? { emailExists: true } : null).pipe(delay(400));
@@ -89,7 +87,6 @@ export class ItemCreateForm {
     };
 
     this.itemsService.addItem(newContact);
-    this.contactsService.addContact(newContact);
 
     this.router.navigateByUrl('/');
   }

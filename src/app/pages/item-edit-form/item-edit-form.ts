@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PageHeader } from '../../components/page-header/page-header';
 import { Contact, ContactLabel, ContactStatus } from '../../models/contact.model';
-import { ContactsService } from '../../services/contacts.service';
 import { ItemsService } from '../../services/items.service';
 
 @Component({
@@ -16,11 +15,9 @@ import { ItemsService } from '../../services/items.service';
 })
 export class ItemEditForm {
   private readonly itemsService = inject(ItemsService);
-  private readonly contactsService = inject(ContactsService);
   private readonly router = inject(Router);
 
   readonly selectedItem = this.itemsService.selectedItem;
-
   readonly statusOptions: ContactStatus[] = ['activo', 'inactivo'];
   readonly labelOptions: ContactLabel[] = ['Trabajo', 'Amigo', 'Familia'];
 
@@ -59,12 +56,6 @@ export class ItemEditForm {
     };
 
     this.itemsService.updateItem(updated);
-
-    const updatedList = this.contactsService.getContacts().map((c) =>
-      c.email === this.originalEmail ? updated : c
-    );
-    this.contactsService.setContacts(updatedList);
-
     this.router.navigateByUrl('/');
   }
 }

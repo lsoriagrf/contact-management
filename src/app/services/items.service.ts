@@ -10,7 +10,10 @@ export class ItemsService {
     { name: 'Juan Pérez', email: 'juan.perez@email.com', status: 'activo', favorite: false, phone: '0991234567', address: 'Calle Larga 3-45, Cuenca', birthday: new Date('1985-11-22'), label: 'Amigo' },
     { name: 'Laura Gómez', email: 'laura.gomez@email.com', status: 'inactivo', favorite: true, phone: '0912345678', address: 'Urb. La Joya, Guayaquil', birthday: new Date('1993-02-14'), label: 'Familia' },
     { name: 'Carlos Ramírez', email: 'carlos.ramirez@email.com', status: 'activo', favorite: false, phone: '0956789012', address: 'Barrio Las Palmas, Esmeraldas', birthday: new Date('1988-08-30'), label: 'Trabajo' },
-    { name: 'Ana López', email: 'ana.lopez@email.com', status: 'inactivo', favorite: false, phone: '0945678123', address: 'Sector El Batán, Quito', birthday: new Date('1995-12-05'), label: 'Amigo' }
+    { name: 'Ana López', email: 'ana.lopez@email.com', status: 'inactivo', favorite: false, phone: '0945678123', address: 'Sector El Batán, Quito', birthday: new Date('1995-12-05'), label: 'Amigo' },
+    { name: 'Roberto Castro', email: 'rob@castro.org', status: 'inactivo', favorite: true, phone: '0934567890', address: 'Av. Cevallos, Ambato', birthday: new Date('1982-03-15'), label: 'Trabajo' },
+    { name: 'Marta Vizuete', email: 'marta.vizuete@gmail.com', status: 'inactivo', favorite: false, phone: '0923456781', address: 'Calle Bolívar, Loja', birthday: new Date('1991-07-19'), label: 'Familia' },
+    { name: 'Diego Armando', email: 'dieguito@futbol.com', status: 'activo', favorite: true, phone: '0978901234', address: 'Barrio Centenario, Guayaquil', birthday: new Date('1980-10-30'), label: 'Amigo' }
   ]);
 
   readonly selectedItem = signal<Contact | null>(null);
